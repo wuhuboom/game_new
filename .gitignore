@@ -1,0 +1,5 @@
+application.yml
+bootlog.out
+logs/task_log.log
+logs/api_log.log
+logs/ws_log.log

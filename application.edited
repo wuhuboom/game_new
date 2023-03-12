@@ -1,0 +1,46 @@
+datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    dynamic:
+	  # 默认库
+      primary: master
+      datasource:
+	    # 名称,和上面对应就是主库,默认库
+        master:
+          url: "jdbc:mysql://rm-bp1660361oki2bk57yo.mysql.rds.aliyuncs.com:3306/ball_game?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8"
+          username: "leidigaga"
+          password: "@@123456Ww"
+          driver-class-name: com.mysql.cj.jdbc.Driver
+		#从库名称随意
+        slave1:
+          url: "jdbc:mysql://192.168.101.33:3306/vx?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8"
+          username: "vx"
+          password: "123123"
+          driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      #连接池配置
+      min-idle: 10
+      initial-size: 20
+      max-active: 2000
+      # 配置获取连接等待超时的时间
+      max-wait: 30000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 20000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 30000
+      remove-abandoned: true
+      remove-abandoned-timeout: 120
+      log-abandoned: true
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      #sql查询超时时间
+      query-timeout: 30
+      #监控
+      filter:
+        wall:
+          enabled: true
+          config:
+            multi-statement-allow: true
+#          keep-alive: true
+      max-pool-prepared-statement-per-connection-size: 50
